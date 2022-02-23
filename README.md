@@ -1,5 +1,7 @@
 # covid-tracker-vue
 
+A small simple project build with [Vue.js](https://vuejs.org/) and [Tailwind CSS](https://tailwindcss.com/)
+
 ## Project setup
 ```
 npm install
