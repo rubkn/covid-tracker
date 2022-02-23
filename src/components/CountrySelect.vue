@@ -1,14 +1,14 @@
 <template>
     <select
-        @change="onChange"
+        @change="onChange()"
         v-model="selected"
-        class="form-select mt-10 block w-full border p-3 rounded"
+        class="w-1/3 form-select border p-3 rounded-lg"
     >
-        <option value="0">Select Country</option>
+        <option value="0">Worldwide</option>
         <option
             v-for="country in countries"
-            :key="country.ID"
             :value="country.ID"
+            :key="country.ID"
         >
             {{ country.Country }}
         </option>
@@ -22,16 +22,16 @@
         data() {
             return {
                 selected: 0,
-            }
+            };
         },
         methods: {
             onChange() {
                 const country = this.countries.find(
                     (item) => item.ID === this.selected
-                )
-                console.log(country)
-                this.$emit('get-country', country)
+                );
+                //console.log(country);
+                this.$emit('get-country', country);
             },
         },
-    }
+    };
 </script>

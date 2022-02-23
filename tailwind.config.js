@@ -9,10 +9,12 @@ module.exports = {
         },
         fontFamily: {
             rubik: ['Rubik', 'sans-serif'],
+            roboto: ['Roboto', 'sans-serif'],
+            poppins: ['Poppins', 'sans-serif'],
         },
     },
     variants: {
         extend: {},
     },
     plugins: [],
-}
+};

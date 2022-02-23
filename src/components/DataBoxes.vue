@@ -1,84 +1,107 @@
 <template>
-    <div class="w-full mx-auto mb-5 text-center">
-        <input type="checkbox" id="checkbox" v-model="checked" />
-        <label for="checkbox" class="ml-2 text-gray-500 font-bold">
-            Show Deaths
-        </label>
-    </div>
-    <div :class="showDeaths">
+    <div class="flex flex-initial justify-start">
         <!--box1-->
-        <div class="shadow-md bg-gray-50 p-8 text-center rounded">
-            <h3 class="text-3xl text-black-900 font-bold mb-4">
-                Cases
+        <div
+            class="shadow-md bg-white py-7 px-5 text-left rounded-lg m-5 w-44 font-rubik"
+        >
+            <h3 class="text-lg text-gray-800 font-poppins font-bold">
+                CASES
             </h3>
 
-            <div class="text-2xl mb-4">
-                <span class="font-bold">New:</span>
-                {{ numberWithCommas(stats.NewConfirmed) }}
+            <div class="text-4xl text-red-700">
+                <span class="font-black"> +</span>
+                <span class="font-bold tracking-tight">
+                    {{
+                        numeral(stats.NewConfirmed)
+                            .format('0a')
+                            .toUpperCase()
+                    }}
+                </span>
             </div>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">Total:</span>
-                {{ numberWithCommas(stats.TotalConfirmed) }}
+            <div class="text-base text-gray-400">
+                <span class="font-bold tracking-tight">
+                    {{
+                        numeral(stats.TotalConfirmed)
+                            .format('0a')
+                            .toUpperCase()
+                    }}
+                    <span>TOTAL</span>
+                </span>
             </div>
         </div>
 
         <!--box2-->
-        <div class="shadow-md bg-green-100 p-10 text-center rounded">
-            <h3 class="text-3xl text-green-900 font-bold mb-4">
-                Recovered
+        <div
+            class="shadow-md bg-white py-7 px-5 text-left rounded-lg m-5 w-44 font-rubik"
+        >
+            <h3 class="text-lg text-gray-800 font-poppins font-bold">
+                RECOVERED
             </h3>
 
-            <div class="text-2xl mb-4">
-                <span class="font-bold">New:</span>
-                {{ numberWithCommas(stats.NewRecovered) }}
+            <div class="text-4xl text-green-700">
+                <span class="font-black"> +</span>
+                <span class="font-bold tracking-tight">
+                    {{
+                        numeral(stats.NewRecovered)
+                            .format('0a')
+                            .toUpperCase()
+                    }}
+                </span>
             </div>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">Total:</span>
-                {{ numberWithCommas(stats.TotalRecovered) }}
+            <div class="text-base text-gray-400">
+                <span class="font-bold tracking-tight">
+                    {{
+                        numeral(stats.TotalRecovered)
+                            .format('0a')
+                            .toUpperCase()
+                    }}
+                    <span>TOTAL</span>
+                </span>
             </div>
         </div>
 
         <!--box3-->
         <div
-            v-show="checked"
-            class="shadow-md bg-gray-50 p-10 text-center rounded"
+            class="shadow-md bg-white py-7 px-5 text-left rounded-lg m-5 w-44 font-rubik"
         >
-            <h3 class="text-3xl text-black-900 font-bold mb-4">
-                Deaths
+            <h3 class="text-lg text-gray-800 font-poppins font-bold">
+                DEATHS
             </h3>
 
-            <div class="text-2xl mb-4">
-                <span class="font-bold">New:</span>
-                {{ numberWithCommas(stats.NewDeaths) }}
+            <div class="text-4xl text-red-700">
+                <span class="font-black"> +</span>
+                <span class="font-bold tracking-tight">
+                    {{
+                        numeral(stats.NewDeaths)
+                            .format('0a')
+                            .toUpperCase()
+                    }}
+                </span>
             </div>
-            <div class="text-2xl mb-4">
-                <span class="font-bold">Total:</span>
-                {{ numberWithCommas(stats.TotalDeaths) }}
+            <div class="text-base text-gray-400">
+                <span class="font-bold tracking-tight">
+                    {{
+                        numeral(stats.TotalDeaths)
+                            .format('0a')
+                            .toUpperCase()
+                    }}
+                    <span>TOTAL</span>
+                </span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+    import numeral from 'numeral';
+
     export default {
         name: 'DataBoxes',
         props: ['stats'],
-        methods: {
-            numberWithCommas(x) {
-                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-            },
-        },
-        data: function() {
+        data() {
             return {
-                checked: false,
-            }
+                numeral,
+            };
         },
-        computed: {
-            showDeaths: function() {
-                return this.checked
-                    ? 'transform duration-1000 grid md:grid-cols-3 gap-6'
-                    : 'transform duration-1000 grid md:grid-cols-2 gap-8'
-            },
-        },
-    }
+    };
 </script>
